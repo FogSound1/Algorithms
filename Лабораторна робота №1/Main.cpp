@@ -1,4 +1,4 @@
-﻿#include "FileFunctions.h"
+#include "FileFunctions.h"
 #include <string>
 
 int main()
