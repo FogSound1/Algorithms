@@ -10,7 +10,7 @@ Block::Block(int num)
 bool Block::BlockRead(ifstream& file)
 {
 	Clear();
-	//Зчитуєм з файла блок
+	//Р—С‡РёС‚СѓС”Рј Р· С„Р°Р№Р»Р° Р±Р»РѕРє
 	if (file.read((char*)Data, Size * sizeof(unsigned long long)))
 	{
 		return true;
@@ -25,7 +25,7 @@ bool Block::GetNum(unsigned long long* num)
 {
 	if (Iter < Size)
 	{
-		//Якщо ітератор не вийшов за межі блока, то повертаєм поточне значення
+		//РЇРєС‰Рѕ С–С‚РµСЂР°С‚РѕСЂ РЅРµ РІРёР№С€РѕРІ Р·Р° РјРµР¶С– Р±Р»РѕРєР°, С‚Рѕ РїРѕРІРµСЂС‚Р°С”Рј РїРѕС‚РѕС‡РЅРµ Р·РЅР°С‡РµРЅРЅСЏ
 		if (Data[Iter] != ULLONG_MAX)
 		{
 			*num = Data[Iter];
@@ -38,7 +38,7 @@ bool Block::GetNum(unsigned long long* num)
 
 bool Block::NumNRead(unsigned long long* num, ifstream& file)
 {
-	//Якщо ітератор вийшов за межі, то заново починаєм зчитувати блок
+	//РЇРєС‰Рѕ С–С‚РµСЂР°С‚РѕСЂ РІРёР№С€РѕРІ Р·Р° РјРµР¶С–, С‚Рѕ Р·Р°РЅРѕРІРѕ РїРѕС‡РёРЅР°С”Рј Р·С‡РёС‚СѓРІР°С‚Рё Р±Р»РѕРє
 	if (!GetNum(num))
 	{
 		if (BlockRead(file))
@@ -58,7 +58,7 @@ bool Block::NumNRead(unsigned long long* num, ifstream& file)
 
 bool Block::AddNum(unsigned long long num)
 {
-	//Додаємо число до блоку, якщо є вільне місце
+	//Р”РѕРґР°С”РјРѕ С‡РёСЃР»Рѕ РґРѕ Р±Р»РѕРєСѓ, СЏРєС‰Рѕ С” РІС–Р»СЊРЅРµ РјС–СЃС†Рµ
 	if (Iter < Size)
 	{
 		Data[Iter] = num;
@@ -70,7 +70,7 @@ bool Block::AddNum(unsigned long long num)
 
 void Block::BlockWrite(ofstream& file)
 {
-	//Якщо наявен хоча б один елемент у блоці, то записуєм його у файл
+	//РЇРєС‰Рѕ РЅР°СЏРІРµРЅ С…РѕС‡Р° Р± РѕРґРёРЅ РµР»РµРјРµРЅС‚ Сѓ Р±Р»РѕС†С–, С‚Рѕ Р·Р°РїРёСЃСѓС”Рј Р№РѕРіРѕ Сѓ С„Р°Р№Р»
 	if (Iter > 0)
 	{
 		file.write((char*)Data, sizeof(unsigned long long) * Size);
@@ -80,7 +80,7 @@ void Block::BlockWrite(ofstream& file)
 
 void Block::NumNWrite(unsigned long long num, ofstream& file)
 {
-	//Якщо блок повний, то записуєм існуюючі числа у файл, очищаєм та записуєм число
+	//РЇРєС‰Рѕ Р±Р»РѕРє РїРѕРІРЅРёР№, С‚Рѕ Р·Р°РїРёСЃСѓС”Рј С–СЃРЅСѓСЋСЋС‡С– С‡РёСЃР»Р° Сѓ С„Р°Р№Р», РѕС‡РёС‰Р°С”Рј С‚Р° Р·Р°РїРёСЃСѓС”Рј С‡РёСЃР»Рѕ
 	if (!AddNum(num))
 	{
 		BlockWrite(file);
@@ -91,7 +91,7 @@ void Block::NumNWrite(unsigned long long num, ofstream& file)
 
 void Block::Clear()
 {
-	//Звільняєм блок від значень
+	//Р—РІС–Р»СЊРЅСЏС”Рј Р±Р»РѕРє РІС–Рґ Р·РЅР°С‡РµРЅСЊ
 	for (int i = 0; i < Size; i++)
 	{
 		Data[i] = ULLONG_MAX;
