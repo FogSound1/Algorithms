@@ -27,7 +27,7 @@ bool SeriesFunctions::GetFE()
 	return FileEnd;
 }
 
-//Додавання елементу та подальше визначення сутності серії
+//Р”РѕРґР°РІР°РЅРЅСЏ РµР»РµРјРµРЅС‚Сѓ С‚Р° РїРѕРґР°Р»СЊС€Рµ РІРёР·РЅР°С‡РµРЅРЅСЏ СЃСѓС‚РЅРѕСЃС‚С– СЃРµСЂС–С—
 bool SeriesFunctions::AddElement(unsigned long long num)
 {
 	Previous = Current;
