@@ -3,7 +3,7 @@
 #include "State.h"
 using namespace std;
 
-//Конструктор класу
+//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
 ChessBoard::ChessBoard()
 {
 	Quantity = 8;
@@ -40,7 +40,7 @@ ChessBoard::ChessBoard(ChessBoard* Previous, int Position1, int Position2, int O
 	int temp;
 	switch (Orientation)
 	{
-	case 1: //Стовбці
+	case 1: //РЎС‚РѕРІР±С†С–
 		for (int i = 0; i < Quantity; i++)
 		{
 			temp = Board[i][Position1];
@@ -48,7 +48,7 @@ ChessBoard::ChessBoard(ChessBoard* Previous, int Position1, int Position2, int O
 			Board[i][Position2] = temp;
 		}
 		break;
-	case 2: //Рядки
+	case 2: //Р СЏРґРєРё
 		for (int i = 0; i < Quantity; i++)
 		{
 			temp = Board[Position1][i];
@@ -82,7 +82,7 @@ void ChessBoard::SetBoard(ChessBoard* Previous)
 	}
 }
 
-//Функція розставлення ферзів на дошці випадковим чином
+//Р¤СѓРЅРєС†С–СЏ СЂРѕР·СЃС‚Р°РІР»РµРЅРЅСЏ С„РµСЂР·С–РІ РЅР° РґРѕС€С†С– РІРёРїР°РґРєРѕРІРёРј С‡РёРЅРѕРј
 void ChessBoard::Generation()
 {
 	srand(time(NULL));
@@ -110,7 +110,7 @@ void ChessBoard::Generation()
 	}
 }
 
-//Функція виводу шахової дошки
+//Р¤СѓРЅРєС†С–СЏ РІРёРІРѕРґСѓ С€Р°С…РѕРІРѕС— РґРѕС€РєРё
 void ChessBoard::Output()
 {
 	int arr[8];
@@ -325,10 +325,10 @@ void ChessBoard::BFS()
 		return;
 	}
 
-	int Counter = 1; //Кількість станів
-	int MaxCount = 1; //Кількість станів в пам'яті
-	int Iter = 0; //Кількість ітерацій
-	// змінні для BFS алгоритму
+	int Counter = 1; //РљС–Р»СЊРєС–СЃС‚СЊ СЃС‚Р°РЅС–РІ
+	int MaxCount = 1; //РљС–Р»СЊРєС–СЃС‚СЊ СЃС‚Р°РЅС–РІ РІ РїР°Рј'СЏС‚С–
+	int Iter = 0; //РљС–Р»СЊРєС–СЃС‚СЊ С–С‚РµСЂР°С†С–Р№
+	// Р·РјС–РЅРЅС– РґР»СЏ BFS Р°Р»РіРѕСЂРёС‚РјСѓ
 	queue <Tree*> Plan;
 	Tree* temp = new Tree(new ChessBoard(this), pow(Quantity, 2) - Quantity);
 	Plan.push(temp);
@@ -339,7 +339,7 @@ void ChessBoard::BFS()
 	while (Flag)
 	{
 		Iter++;
-		//BFS алгоритм
+		//BFS Р°Р»РіРѕСЂРёС‚Рј
 		temp = Plan.front();
 		Plan.pop();
 		ChessBoardArr = temp->GetData()->BoardArrGen();
@@ -355,20 +355,20 @@ void ChessBoard::BFS()
 			Counter++;
 		}
 
-		// визначення найбільшої кількості вершин, що існували в один момент
+		// РІРёР·РЅР°С‡РµРЅРЅСЏ РЅР°Р№Р±С–Р»СЊС€РѕС— РєС–Р»СЊРєРѕСЃС‚С– РІРµСЂС€РёРЅ, С‰Рѕ С–СЃРЅСѓРІР°Р»Рё РІ РѕРґРёРЅ РјРѕРјРµРЅС‚
 		if (MaxCount < Plan.size() + 1)
 		{
 			MaxCount = Plan.size() + 1;
 		}
 
-		// видалення непотрібних вершин
+		// РІРёРґР°Р»РµРЅРЅСЏ РЅРµРїРѕС‚СЂС–Р±РЅРёС… РІРµСЂС€РёРЅ
 		if (temp2 != temp)
 		{
 			delete temp;
 		}
 	}
 
-	// видалення всіх вершин дерева, що залишилися
+	// РІРёРґР°Р»РµРЅРЅСЏ РІСЃС–С… РІРµСЂС€РёРЅ РґРµСЂРµРІР°, С‰Рѕ Р·Р°Р»РёС€РёР»РёСЃСЏ
 	while (Plan.size() > 1)
 	{
 		temp = Plan.front();
@@ -376,7 +376,7 @@ void ChessBoard::BFS()
 		delete temp;
 	}
 
-	// результат
+	// СЂРµР·СѓР»СЊС‚Р°С‚
 	for (int i = 0; i < Quantity; i++)
 	{
 		for (int j = 0; j < Quantity; j++)
@@ -398,9 +398,9 @@ void ChessBoard::As()
 		return;
 	}
 
-	int Counter = 1; //Кількість станів
-	int MaxCount = 1; //Кількість станів в пам'яті
-	int Iter = 0; //Кількість ітерацій
+	int Counter = 1; //РљС–Р»СЊРєС–СЃС‚СЊ СЃС‚Р°РЅС–РІ
+	int MaxCount = 1; //РљС–Р»СЊРєС–СЃС‚СЊ СЃС‚Р°РЅС–РІ РІ РїР°Рј'СЏС‚С–
+	int Iter = 0; //РљС–Р»СЊРєС–СЃС‚СЊ С–С‚РµСЂР°С†С–Р№
 
 	auto compare = [](State a, State b)
 	{
