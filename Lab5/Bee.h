@@ -2,22 +2,22 @@
 #include "Route.h"
 #include "MatrixGraph.h"
 
-//Клас представлення бджоли
+//РљР»Р°СЃ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ Р±РґР¶РѕР»Рё
 class Bee
 {
 private:
-	Route route; //Шлях, пройдений бджолою
+	Route route; //РЁР»СЏС…, РїСЂРѕР№РґРµРЅРёР№ Р±РґР¶РѕР»РѕСЋ
 	//Onlooker - 1, Forager - 2, Scout - 3
-	int Role; //Роль бджоли 
-	int Cycle; //Кількість ітерацій під час вирішення задачі
+	int Role; //Р РѕР»СЊ Р±РґР¶РѕР»Рё 
+	int Cycle; //РљС–Р»СЊРєС–СЃС‚СЊ С–С‚РµСЂР°С†С–Р№ РїС–Рґ С‡Р°СЃ РІРёСЂС–С€РµРЅРЅСЏ Р·Р°РґР°С‡С–
 public:
-	Bee(int role, MatrixGraph Graph); //Конструктор класу
-	void ShuffleBeeRoute(MatrixGraph Graph); //Функція перемішування шляху
-	void Forage(MatrixGraph Graph, int Limit); //Функціонал бджол-працівників
-	void SetRoute(vector<int> OtherRoute, double distance); //Функція заміни шляху бджоли
-	void Scout(MatrixGraph Graph); //Функціонал бджоли-розвідника
-	Route GetRoute(); //Гетер шляху, пройденного мурахою
-	void SetRole(int Value); //Сетер ролі
-	int GetRole(); //Гетер ролі бджоли
-	int GetCycle(); //Гетер ітерацій
+	Bee(int role, MatrixGraph Graph); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
+	void ShuffleBeeRoute(MatrixGraph Graph); //Р¤СѓРЅРєС†С–СЏ РїРµСЂРµРјС–С€СѓРІР°РЅРЅСЏ С€Р»СЏС…Сѓ
+	void Forage(MatrixGraph Graph, int Limit); //Р¤СѓРЅРєС†С–РѕРЅР°Р» Р±РґР¶РѕР»-РїСЂР°С†С–РІРЅРёРєС–РІ
+	void SetRoute(vector<int> OtherRoute, double distance); //Р¤СѓРЅРєС†С–СЏ Р·Р°РјС–РЅРё С€Р»СЏС…Сѓ Р±РґР¶РѕР»Рё
+	void Scout(MatrixGraph Graph); //Р¤СѓРЅРєС†С–РѕРЅР°Р» Р±РґР¶РѕР»Рё-СЂРѕР·РІС–РґРЅРёРєР°
+	Route GetRoute(); //Р“РµС‚РµСЂ С€Р»СЏС…Сѓ, РїСЂРѕР№РґРµРЅРЅРѕРіРѕ РјСѓСЂР°С…РѕСЋ
+	void SetRole(int Value); //РЎРµС‚РµСЂ СЂРѕР»С–
+	int GetRole(); //Р“РµС‚РµСЂ СЂРѕР»С– Р±РґР¶РѕР»Рё
+	int GetCycle(); //Р“РµС‚РµСЂ С–С‚РµСЂР°С†С–Р№
 };
