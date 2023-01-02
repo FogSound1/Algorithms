@@ -1,32 +1,32 @@
 #include "Route.h"
 
-//Конструктор класу
+//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
 Route::Route()
 {
 	Distance = INFINITY;
 }
 
-//Конструктор класу
+//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
 Route::Route(int Initial)
 {
 	Distance = 0;
 	this->AddStep(Initial, 0);
 }
 
-//Конструктор класу
+//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
 Route::Route(vector<int> path, MatrixGraph Graph)
 {
 	Path = {path.begin(), path.end()};
 	this->UpdateDistance(Graph);
 }
 
-//Гетер пройденної дистанції
+//Р“РµС‚РµСЂ РїСЂРѕР№РґРµРЅРЅРѕС— РґРёСЃС‚Р°РЅС†С–С—
 double Route::GetDistance() const
 {
 	return Distance;
 }
 
-//Рандомізація шляху
+//Р Р°РЅРґРѕРјС–Р·Р°С†С–СЏ С€Р»СЏС…Сѓ
 void Route::RandomRoute(MatrixGraph Graph)
 {
 	Path.resize(Graph.GetSize());
@@ -38,13 +38,13 @@ void Route::RandomRoute(MatrixGraph Graph)
 	this->ShuffleRoute();
 }
 
-//Перемішування шляху
+//РџРµСЂРµРјС–С€СѓРІР°РЅРЅСЏ С€Р»СЏС…Сѓ
 void Route::ShuffleRoute()
 {
 	random_shuffle(begin(Path), end(Path));
 }
 
-//Функція заміни шляху
+//Р¤СѓРЅРєС†С–СЏ Р·Р°РјС–РЅРё С€Р»СЏС…Сѓ
 void Route::ChangePath(vector<int> OtherRoute, double distance)
 {
 	Path.resize(OtherRoute.size());
@@ -52,7 +52,7 @@ void Route::ChangePath(vector<int> OtherRoute, double distance)
 	Distance = distance;
 }
 
-//Функція зміни шляху
+//Р¤СѓРЅРєС†С–СЏ Р·РјС–РЅРё С€Р»СЏС…Сѓ
 Route Route::MutatePath(MatrixGraph Graph)
 {
 	int Temp;
@@ -69,7 +69,7 @@ Route Route::MutatePath(MatrixGraph Graph)
 	return route;
 }
 
-//Функція оновлення пройденної дистанції
+//Р¤СѓРЅРєС†С–СЏ РѕРЅРѕРІР»РµРЅРЅСЏ РїСЂРѕР№РґРµРЅРЅРѕС— РґРёСЃС‚Р°РЅС†С–С—
 void Route::UpdateDistance(MatrixGraph Graph)
 {
 	Distance = 0;
@@ -80,7 +80,7 @@ void Route::UpdateDistance(MatrixGraph Graph)
 	}
 }
 
-//Гетер кількості пройденних кроків
+//Р“РµС‚РµСЂ РєС–Р»СЊРєРѕСЃС‚С– РїСЂРѕР№РґРµРЅРЅРёС… РєСЂРѕРєС–РІ
 int Route::GetSteps() const
 {
 	return Path.size();
@@ -91,26 +91,26 @@ vector<int> Route::GetPath()
 	return Path;
 }
 
-//Перевантаження оператору [] для ітерування елементами класу
+//РџРµСЂРµРІР°РЅС‚Р°Р¶РµРЅРЅСЏ РѕРїРµСЂР°С‚РѕСЂСѓ [] РґР»СЏ С–С‚РµСЂСѓРІР°РЅРЅСЏ РµР»РµРјРµРЅС‚Р°РјРё РєР»Р°СЃСѓ
 int Route::operator[](int element) const
 {
 	return Path[element];
 }
 
-//Додавання кроку до шляху
+//Р”РѕРґР°РІР°РЅРЅСЏ РєСЂРѕРєСѓ РґРѕ С€Р»СЏС…Сѓ
 void Route::AddStep(int Vertex, double distance)
 {
 	Path.push_back(Vertex);
 	Distance += distance;
 }
 
-//Перевірка чи була пройдена локація
+//РџРµСЂРµРІС–СЂРєР° С‡Рё Р±СѓР»Р° РїСЂРѕР№РґРµРЅР° Р»РѕРєР°С†С–СЏ
 bool Route::Contains(int Location)
 {
 	return find(Path.begin(), Path.end(), Location) != Path.end();
 }
 
-//Перевантаження оператору присвоєння
+//РџРµСЂРµРІР°РЅС‚Р°Р¶РµРЅРЅСЏ РѕРїРµСЂР°С‚РѕСЂСѓ РїСЂРёСЃРІРѕС”РЅРЅСЏ
 Route& Route::operator=(Route route)
 {
 	Path = { route.Path.begin(), route.Path.end() };
