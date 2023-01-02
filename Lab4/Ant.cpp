@@ -1,9 +1,9 @@
 #include "Ant.h"
 #include <cmath>
 
-/*Конструктор класу, генератор випадкових чисел передається параметром, можливість рухатись задається як true
-Якщо не важливо з якого саме міста починати, то початкова дислокація вибирається випадковим чином
-Стартова локація задається параметром поточної локації, ініціалізується шлях*/
+/*РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ, РіРµРЅРµСЂР°С‚РѕСЂ РІРёРїР°РґРєРѕРІРёС… С‡РёСЃРµР» РїРµСЂРµРґР°С”С‚СЊСЃСЏ РїР°СЂР°РјРµС‚СЂРѕРј, РјРѕР¶Р»РёРІС–СЃС‚СЊ СЂСѓС…Р°С‚РёСЃСЊ Р·Р°РґР°С”С‚СЊСЃСЏ СЏРє true
+РЇРєС‰Рѕ РЅРµ РІР°Р¶Р»РёРІРѕ Р· СЏРєРѕРіРѕ СЃР°РјРµ РјС–СЃС‚Р° РїРѕС‡РёРЅР°С‚Рё, С‚Рѕ РїРѕС‡Р°С‚РєРѕРІР° РґРёСЃР»РѕРєР°С†С–СЏ РІРёР±РёСЂР°С”С‚СЊСЃСЏ РІРёРїР°РґРєРѕРІРёРј С‡РёРЅРѕРј
+РЎС‚Р°СЂС‚РѕРІР° Р»РѕРєР°С†С–СЏ Р·Р°РґР°С”С‚СЊСЃСЏ РїР°СЂР°РјРµС‚СЂРѕРј РїРѕС‚РѕС‡РЅРѕС— Р»РѕРєР°С†С–С—, С–РЅС–С†С–Р°Р»С–Р·СѓС”С‚СЊСЃСЏ С€Р»СЏС…*/
 Ant::Ant(default_random_engine& engine, int Location, bool Exact) : Engine(engine), IsAbleToMove(true)
 {
 	if (Exact)
@@ -19,12 +19,12 @@ Ant::Ant(default_random_engine& engine, int Location, bool Exact) : Engine(engin
 	route = unique_ptr<Route>(new Route(CurrentLocation));
 }
 
-/*Функція вибору мурахою наступного кроку*/
+/*Р¤СѓРЅРєС†С–СЏ РІРёР±РѕСЂСѓ РјСѓСЂР°С…РѕСЋ РЅР°СЃС‚СѓРїРЅРѕРіРѕ РєСЂРѕРєСѓ*/
 int Ant::Choice(const MatrixGraph& Pheromone, const MatrixGraph& Distance, double Alpha, double Beta)
 {
 	int From = CurrentLocation;
 
-	if (route->GetSteps() == Distance.GetSize()) //Перевірка чи пройшла мураха усі міста
+	if (route->GetSteps() == Distance.GetSize()) //РџРµСЂРµРІС–СЂРєР° С‡Рё РїСЂРѕР№С€Р»Р° РјСѓСЂР°С…Р° СѓСЃС– РјС–СЃС‚Р°
 	{
 		IsAbleToMove = false;
 		CurrentLocation = StartingLocation;
@@ -37,11 +37,11 @@ int Ant::Choice(const MatrixGraph& Pheromone, const MatrixGraph& Distance, doubl
 	double CurrentProb;
 	for (int i = 0, Size = Distance.GetSize(); i < Size; i++)
 	{
-		if (i == From) //Не можна йти в те саме місто
+		if (i == From) //РќРµ РјРѕР¶РЅР° Р№С‚Рё РІ С‚Рµ СЃР°РјРµ РјС–СЃС‚Рѕ
 		{
 			NeighbourProb.push_back(0);
 		}
-		else if (route->Contains(i)) //Не можна двічі відвідувати місто
+		else if (route->Contains(i)) //РќРµ РјРѕР¶РЅР° РґРІС–С‡С– РІС–РґРІС–РґСѓРІР°С‚Рё РјС–СЃС‚Рѕ
 		{
 			NeighbourProb.push_back(0);
 		}
@@ -53,7 +53,7 @@ int Ant::Choice(const MatrixGraph& Pheromone, const MatrixGraph& Distance, doubl
 		}
 	}
 
-	if (MaxProb == 0) //Нема куди йти
+	if (MaxProb == 0) //РќРµРјР° РєСѓРґРё Р№С‚Рё
 	{
 		IsAbleToMove = false;
 		return SIZE_MAX;
@@ -73,25 +73,25 @@ int Ant::Choice(const MatrixGraph& Pheromone, const MatrixGraph& Distance, doubl
 	}
 }
 
-//Гетер поточного місцеположення
+//Р“РµС‚РµСЂ РїРѕС‚РѕС‡РЅРѕРіРѕ РјС–СЃС†РµРїРѕР»РѕР¶РµРЅРЅСЏ
 int Ant::GetCurrentLocation() const
 {
 	return CurrentLocation;
 }
 
-//Гетер шляху, пройденного мурахою
+//Р“РµС‚РµСЂ С€Р»СЏС…Сѓ, РїСЂРѕР№РґРµРЅРЅРѕРіРѕ РјСѓСЂР°С…РѕСЋ
 unique_ptr<Route> Ant::GetRoute()
 {
 	return move(route);
 }
 
-//Можливість мурахи йти далі
+//РњРѕР¶Р»РёРІС–СЃС‚СЊ РјСѓСЂР°С…Рё Р№С‚Рё РґР°Р»С–
 bool Ant::AbleToContinue() const
 {
 	return IsAbleToMove;
 }
 
-//Перевірка чи мураха у стартовій локації
+//РџРµСЂРµРІС–СЂРєР° С‡Рё РјСѓСЂР°С…Р° Сѓ СЃС‚Р°СЂС‚РѕРІС–Р№ Р»РѕРєР°С†С–С—
 bool Ant::AtTheStart() const
 {
 	if (CurrentLocation == StartingLocation)
