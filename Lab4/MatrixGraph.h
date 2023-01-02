@@ -7,19 +7,18 @@
 #include <fstream>
 using namespace std;
 
-//Клас представлення графу, задається як матриця
+//РљР»Р°СЃ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ РіСЂР°С„Сѓ, Р·Р°РґР°С”С‚СЊСЃСЏ СЏРє РјР°С‚СЂРёС†СЏ
 class MatrixGraph
 {
 private:
-	int Size; //Кількість вершин графу
-	vector <vector <double>> Matrix; //Представлення матриці
+	int Size; //РљС–Р»СЊРєС–СЃС‚СЊ РІРµСЂС€РёРЅ РіСЂР°С„Сѓ
+	vector <vector <double>> Matrix; //РџСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ РјР°С‚СЂРёС†С–
 public:
-	MatrixGraph(string FileName); //Конструктор
-	MatrixGraph(int size, function<double(int, int)> Generation); //Конструктор для графу феромонів
-	//Видалення конструктора без параметрів для ліквідації можливих створень об'єктів класу без заданих параметрів
+	MatrixGraph(string FileName); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+	MatrixGraph(int size, function<double(int, int)> Generation); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ РіСЂР°С„Сѓ С„РµСЂРѕРјРѕРЅС–РІ
+	//Р’РёРґР°Р»РµРЅРЅСЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° Р±РµР· РїР°СЂР°РјРµС‚СЂС–РІ РґР»СЏ Р»С–РєРІС–РґР°С†С–С— РјРѕР¶Р»РёРІРёС… СЃС‚РІРѕСЂРµРЅСЊ РѕР±'С”РєС‚С–РІ РєР»Р°СЃСѓ Р±РµР· Р·Р°РґР°РЅРёС… РїР°СЂР°РјРµС‚СЂС–РІ
 	MatrixGraph() = delete; 
-	int GetSize() const; //Гетер кількості вершин графу (розмірності матриці)
-	double GetElement(int Index1, int Index2) const; //Гетер елементу матриці
-	void alter(int From, int To, function<void(double&)> alterator); //Функція зміни параметру
+	int GetSize() const; //Р“РµС‚РµСЂ РєС–Р»СЊРєРѕСЃС‚С– РІРµСЂС€РёРЅ РіСЂР°С„Сѓ (СЂРѕР·РјС–СЂРЅРѕСЃС‚С– РјР°С‚СЂРёС†С–)
+	double GetElement(int Index1, int Index2) const; //Р“РµС‚РµСЂ РµР»РµРјРµРЅС‚Сѓ РјР°С‚СЂРёС†С–
+	void alter(int From, int To, function<void(double&)> alterator); //Р¤СѓРЅРєС†С–СЏ Р·РјС–РЅРё РїР°СЂР°РјРµС‚СЂСѓ
 };
-
