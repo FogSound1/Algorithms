@@ -5,22 +5,21 @@
 #include "Route.h"
 using namespace std;
 
-//Клас представлення мурахи
+//РљР»Р°СЃ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ РјСѓСЂР°С…Рё
 class Ant
 {
 private:
-	default_random_engine& Engine; //Генератор випадкових чисел
-	int CurrentLocation; //Поточне місцерозташування мурахи
-	int StartingLocation; //Початкове місцерозтішування
-	unique_ptr<Route> route; //Шлях, пройдений мурахою
-	bool IsAbleToMove; //Можливість мурахи продовжити рух
+	default_random_engine& Engine; //Р“РµРЅРµСЂР°С‚РѕСЂ РІРёРїР°РґРєРѕРІРёС… С‡РёСЃРµР»
+	int CurrentLocation; //РџРѕС‚РѕС‡РЅРµ РјС–СЃС†РµСЂРѕР·С‚Р°С€СѓРІР°РЅРЅСЏ РјСѓСЂР°С…Рё
+	int StartingLocation; //РџРѕС‡Р°С‚РєРѕРІРµ РјС–СЃС†РµСЂРѕР·С‚С–С€СѓРІР°РЅРЅСЏ
+	unique_ptr<Route> route; //РЁР»СЏС…, РїСЂРѕР№РґРµРЅРёР№ РјСѓСЂР°С…РѕСЋ
+	bool IsAbleToMove; //РњРѕР¶Р»РёРІС–СЃС‚СЊ РјСѓСЂР°С…Рё РїСЂРѕРґРѕРІР¶РёС‚Рё СЂСѓС…
 public:
-	Ant(default_random_engine& engine, int Location, bool Exact); //Конструктор класу
-	//Функція вибору подальшого кроку мурахи
+	Ant(default_random_engine& engine, int Location, bool Exact); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
+	//Р¤СѓРЅРєС†С–СЏ РІРёР±РѕСЂСѓ РїРѕРґР°Р»СЊС€РѕРіРѕ РєСЂРѕРєСѓ РјСѓСЂР°С…Рё
 	int Choice(const MatrixGraph& Pheromone, const MatrixGraph& Distance, double Alpha, double Beta);
-	int GetCurrentLocation() const; //Гетер поточного місцерозташування
-	unique_ptr<Route> GetRoute(); //Гетер шляху, пройденного мурахою
-	bool AbleToContinue() const; //Гетер можливості мурахи продовжувати рух
-	bool AtTheStart() const; //Перевірка, чи мураха у стартовій локації
+	int GetCurrentLocation() const; //Р“РµС‚РµСЂ РїРѕС‚РѕС‡РЅРѕРіРѕ РјС–СЃС†РµСЂРѕР·С‚Р°С€СѓРІР°РЅРЅСЏ
+	unique_ptr<Route> GetRoute(); //Р“РµС‚РµСЂ С€Р»СЏС…Сѓ, РїСЂРѕР№РґРµРЅРЅРѕРіРѕ РјСѓСЂР°С…РѕСЋ
+	bool AbleToContinue() const; //Р“РµС‚РµСЂ РјРѕР¶Р»РёРІРѕСЃС‚С– РјСѓСЂР°С…Рё РїСЂРѕРґРѕРІР¶СѓРІР°С‚Рё СЂСѓС…
+	bool AtTheStart() const; //РџРµСЂРµРІС–СЂРєР°, С‡Рё РјСѓСЂР°С…Р° Сѓ СЃС‚Р°СЂС‚РѕРІС–Р№ Р»РѕРєР°С†С–С—
 };
-
