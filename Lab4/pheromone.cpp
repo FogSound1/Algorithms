@@ -1,6 +1,6 @@
 #include "pheromone.h"
 
-//Функція прокладування феромону
+//Р¤СѓРЅРєС†С–СЏ РїСЂРѕРєР»Р°РґСѓРІР°РЅРЅСЏ С„РµСЂРѕРјРѕРЅСѓ
 void pheromone::Lay(MatrixGraph& Phero, const Route& route, double AntPheromone)
 {
 	double PheromoneToLay = AntPheromone / route.GetSteps();
@@ -10,7 +10,7 @@ void pheromone::Lay(MatrixGraph& Phero, const Route& route, double AntPheromone)
 	}
 }
 
-//Функція випаровування феромону
+//Р¤СѓРЅРєС†С–СЏ РІРёРїР°СЂРѕРІСѓРІР°РЅРЅСЏ С„РµСЂРѕРјРѕРЅСѓ
 void pheromone::Evaporate(MatrixGraph& Phero, double Evaporation)
 {
 	for (int i = 0, n = Phero.GetSize(); i < n; i++)
