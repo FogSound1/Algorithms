@@ -1,87 +1,22 @@
-#include "Hive.h"
+#pragma once
+#include <random>
+#include <vector>
+#include "MatrixGraph.h"
+#include "Bee.h"
 
-//Передається граф з містами задачі комівояжера
-Hive::Hive(MatrixGraph Graph) : Distance (Graph)
+
+//РљР»Р°СЃ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ РІСѓР»РёРєСѓ
+class Hive
 {
-	Population = 180;
-}
-
-//Функція створення бджол
-void Hive::CreateBees()
-{
-	int Onlooker_Count, Forager_Count;
-
-	Onlooker_Count = floor(Population * 0.5);
-	Forager_Count = Onlooker_Count;
-	BeeHive.resize(Population);
-	for (int i = 0; i < Onlooker_Count; i++)
-	{
-		BeeHive[i] = unique_ptr<Bee>(new Bee(1, Distance));
-	}
-
-	for (int i = Onlooker_Count; i < (Onlooker_Count + Forager_Count); i++)
-	{
-		BeeHive[i] = unique_ptr<Bee>(new Bee(2, Distance));
-		BeeHive[i]->ShuffleBeeRoute(Distance);
-	}
-}
-
-/*Збирається інформація на рахунок праці бджол - працівників
-Вибирається новий випадковий шлях для розвідників.*/
-Route Hive::Waggle(int ForagerLimit, double ScoutCount, Route BestRoute)
-{
-	int Iterator = 0;
-	vector<int> Indexes;
-	vector<double> ForagerDistances;
-	vector<double> ForagerDistancesSorted;
-	for (unique_ptr<Bee>& bee : BeeHive)
-	{
-		if (bee->GetRole() == 2)
-		{
-			bee->Forage(Distance, ForagerLimit);
-			if (bee->GetRoute().GetDistance() < BestRoute.GetDistance())
-			{
-				BestRoute.ChangePath(bee->GetRoute().GetPath(), bee->GetRoute().GetDistance());
-			}
-			Indexes.push_back(Iterator);
-			ForagerDistances.push_back(BestRoute.GetDistance());
-			ForagerDistancesSorted.push_back(BestRoute.GetDistance());
-		}
-		else if (bee->GetRole() == 3)
-		{
-			bee->Scout(Distance);
-		}
-		Iterator++;
-	}
-
-	vector<double>::iterator Ind;
-	sort(ForagerDistancesSorted.begin(), ForagerDistancesSorted.end(), greater<double>{});
-	for (int i = 0; i < ScoutCount && i < ForagerDistances.size(); i++)
-	{
-		Ind = find(ForagerDistances.begin(), ForagerDistances.end(), ForagerDistancesSorted[i]);
-		BeeHive[Indexes[Ind - ForagerDistances.begin()]]->SetRole(3);
-	}
-
-	return BestRoute;
-}
-
-/*Переглядається найкращі результати, які були до цього моменту отримані*/
-Route Hive::Recruit(Route BestRoute)
-{
-	for (unique_ptr<Bee>& bee : BeeHive)
-	{
-		if (bee->GetRole() == 1)
-		{
-			bee->SetRoute(BestRoute.GetPath(), BestRoute.GetDistance());
-			Route MutantRoute(0);
-			MutantRoute = bee->GetRoute().MutatePath(Distance);
-			bee->SetRoute(MutantRoute.GetPath(), MutantRoute.GetDistance());
-			if (bee->GetRoute().GetDistance() < BestRoute.GetDistance())
-			{
-				BestRoute.ChangePath(bee->GetRoute().GetPath(), bee->GetRoute().GetDistance());
-			}
-		}
-	}
-
-	return BestRoute;
-}
+private:
+	int Population; //РљС–Р»СЊРєС–СЃС‚СЊ Р±РґР¶РѕР»
+	MatrixGraph Distance; //Р“СЂР°С„ Р· РІРµСЂС€РёРЅР°РјРё Р·Р°РґР°С‡С– РєРѕРјС–РІРѕСЏР¶РµСЂР°
+	random_device Device; //РџСЂРёР»Р°Рґ РґР»СЏ РіРµРЅРµСЂР°С†С–С— РІРёРїР°РґРєРѕРІРёС… С‡РёСЃРµР»
+	default_random_engine Engine; //Р“РµРЅРµСЂР°С‚РѕСЂ РІРёРїР°РґРєРѕРІРёС… С‡РёСЃРµР»
+	vector <unique_ptr<Bee>> BeeHive; //РњР°СЃРёРІ Р±РґР¶РѕР»
+public:
+	Hive(MatrixGraph Graph); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
+	void CreateBees(); //Р¤СѓРЅРєС†С–СЏ СЃС‚РІРѕСЂРµРЅРЅСЏ Р±РґР¶РѕР»
+	Route Waggle(int ForagerLimit, double ScoutCount, Route BestRoute); //Р—Р±С–СЂ С–РЅС„РѕСЂРјР°С†С–С—
+	Route Recruit(Route BestRoute); //РџРµСЂРµРіР»СЏРґ РЅР°Р№РєСЂР°С‰РёС… СЂРµР·СѓР»СЊС‚Р°С‚С–РІ
+};
