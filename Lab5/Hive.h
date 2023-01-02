@@ -5,18 +5,18 @@
 #include "Bee.h"
 
 
-//Клас представлення вулику
+//РљР»Р°СЃ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ РІСѓР»РёРєСѓ
 class Hive
 {
 private:
-	int Population; //Кількість бджол
-	MatrixGraph Distance; //Граф з вершинами задачі комівояжера
-	random_device Device; //Прилад для генерації випадкових чисел
-	default_random_engine Engine; //Генератор випадкових чисел
-	vector <unique_ptr<Bee>> BeeHive; //Масив бджол
+	int Population; //РљС–Р»СЊРєС–СЃС‚СЊ Р±РґР¶РѕР»
+	MatrixGraph Distance; //Р“СЂР°С„ Р· РІРµСЂС€РёРЅР°РјРё Р·Р°РґР°С‡С– РєРѕРјС–РІРѕСЏР¶РµСЂР°
+	random_device Device; //РџСЂРёР»Р°Рґ РґР»СЏ РіРµРЅРµСЂР°С†С–С— РІРёРїР°РґРєРѕРІРёС… С‡РёСЃРµР»
+	default_random_engine Engine; //Р“РµРЅРµСЂР°С‚РѕСЂ РІРёРїР°РґРєРѕРІРёС… С‡РёСЃРµР»
+	vector <unique_ptr<Bee>> BeeHive; //РњР°СЃРёРІ Р±РґР¶РѕР»
 public:
-	Hive(MatrixGraph Graph); //Конструктор класу
-	void CreateBees(); //Функція створення бджол
-	Route Waggle(int ForagerLimit, double ScoutCount, Route BestRoute); //Збір інформації
-	Route Recruit(Route BestRoute); //Перегляд найкращих результатів
+	Hive(MatrixGraph Graph); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
+	void CreateBees(); //Р¤СѓРЅРєС†С–СЏ СЃС‚РІРѕСЂРµРЅРЅСЏ Р±РґР¶РѕР»
+	Route Waggle(int ForagerLimit, double ScoutCount, Route BestRoute); //Р—Р±С–СЂ С–РЅС„РѕСЂРјР°С†С–С—
+	Route Recruit(Route BestRoute); //РџРµСЂРµРіР»СЏРґ РЅР°Р№РєСЂР°С‰РёС… СЂРµР·СѓР»СЊС‚Р°С‚С–РІ
 };
