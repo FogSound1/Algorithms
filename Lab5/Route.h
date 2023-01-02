@@ -5,26 +5,26 @@
 #include <random>
 #include "MatrixGraph.h"
 
-//Клас представлення шляху
+//РљР»Р°СЃ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ С€Р»СЏС…Сѓ
 class Route
 {
 private:
-	vector<int> Path; //Представлення шляху
-	double Distance; //Дистанція, яку займає шлях
+	vector<int> Path; //РџСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ С€Р»СЏС…Сѓ
+	double Distance; //Р”РёСЃС‚Р°РЅС†С–СЏ, СЏРєСѓ Р·Р°Р№РјР°С” С€Р»СЏС…
 public:
-	Route(); //Конструктор класу
-	Route(int Initial); //Конструктор класу
-	Route(vector<int> path, MatrixGraph Graph); //Конструктор класу
-	double GetDistance() const; //Гетер дистанції
-	void RandomRoute(MatrixGraph Graph); //Рандомізувати шлях
-	void ShuffleRoute(); //Перемішування шляху
-	void ChangePath(vector<int> OtherRoute, double distance); //Функція заміни шляху
-	Route MutatePath(MatrixGraph Graph); //Функція зміни шляху
-	void UpdateDistance(MatrixGraph Graph); //Функція оновлення пройденної дистанції
-	int GetSteps() const; //Отримання кількості, пройденних кроків
-	vector<int> GetPath(); //Гетер шляху
-	int operator[] (int element) const; //Перевантаження оператору [] для ітерування елементами класу
-	void AddStep(int Vertex, double distance); //Додавання кроку до шляху
-	bool Contains(int Location); //Перевірка чи була пройдена локація
-	Route& operator = (Route route); //Перевантаження оператора присвоєння
+	Route(); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
+	Route(int Initial); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
+	Route(vector<int> path, MatrixGraph Graph); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
+	double GetDistance() const; //Р“РµС‚РµСЂ РґРёСЃС‚Р°РЅС†С–С—
+	void RandomRoute(MatrixGraph Graph); //Р Р°РЅРґРѕРјС–Р·СѓРІР°С‚Рё С€Р»СЏС…
+	void ShuffleRoute(); //РџРµСЂРµРјС–С€СѓРІР°РЅРЅСЏ С€Р»СЏС…Сѓ
+	void ChangePath(vector<int> OtherRoute, double distance); //Р¤СѓРЅРєС†С–СЏ Р·Р°РјС–РЅРё С€Р»СЏС…Сѓ
+	Route MutatePath(MatrixGraph Graph); //Р¤СѓРЅРєС†С–СЏ Р·РјС–РЅРё С€Р»СЏС…Сѓ
+	void UpdateDistance(MatrixGraph Graph); //Р¤СѓРЅРєС†С–СЏ РѕРЅРѕРІР»РµРЅРЅСЏ РїСЂРѕР№РґРµРЅРЅРѕС— РґРёСЃС‚Р°РЅС†С–С—
+	int GetSteps() const; //РћС‚СЂРёРјР°РЅРЅСЏ РєС–Р»СЊРєРѕСЃС‚С–, РїСЂРѕР№РґРµРЅРЅРёС… РєСЂРѕРєС–РІ
+	vector<int> GetPath(); //Р“РµС‚РµСЂ С€Р»СЏС…Сѓ
+	int operator[] (int element) const; //РџРµСЂРµРІР°РЅС‚Р°Р¶РµРЅРЅСЏ РѕРїРµСЂР°С‚РѕСЂСѓ [] РґР»СЏ С–С‚РµСЂСѓРІР°РЅРЅСЏ РµР»РµРјРµРЅС‚Р°РјРё РєР»Р°СЃСѓ
+	void AddStep(int Vertex, double distance); //Р”РѕРґР°РІР°РЅРЅСЏ РєСЂРѕРєСѓ РґРѕ С€Р»СЏС…Сѓ
+	bool Contains(int Location); //РџРµСЂРµРІС–СЂРєР° С‡Рё Р±СѓР»Р° РїСЂРѕР№РґРµРЅР° Р»РѕРєР°С†С–СЏ
+	Route& operator = (Route route); //РџРµСЂРµРІР°РЅС‚Р°Р¶РµРЅРЅСЏ РѕРїРµСЂР°С‚РѕСЂР° РїСЂРёСЃРІРѕС”РЅРЅСЏ
 };
