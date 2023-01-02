@@ -4,18 +4,17 @@
 #include "MatrixGraph.h"
 using namespace std;
 
-//Клас представлення шляху
+//РљР»Р°СЃ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ С€Р»СЏС…Сѓ
 class Route
 {
 private:
-	vector<int> Path; //Представлення шляху
-	double Distance; //Дистанція, яку займає шлях
+	vector<int> Path; //РџСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ С€Р»СЏС…Сѓ
+	double Distance; //Р”РёСЃС‚Р°РЅС†С–СЏ, СЏРєСѓ Р·Р°Р№РјР°С” С€Р»СЏС…
 public:
-	Route(int Initial); //Конструктор класу
-	double GetDistance() const; //Гетер дистанції
-	int GetSteps() const; //Отримання кількості, пройденних кроків
-	int operator[] (int element) const; //Перевантаження оператору [] для ітерування елементами класу
-	void AddStep(int Vertex, double distance); //Додавання кроку до шляху
-	bool Contains(int Location); //Перевірка чи була пройдена локація
+	Route(int Initial); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
+	double GetDistance() const; //Р“РµС‚РµСЂ РґРёСЃС‚Р°РЅС†С–С—
+	int GetSteps() const; //РћС‚СЂРёРјР°РЅРЅСЏ РєС–Р»СЊРєРѕСЃС‚С–, РїСЂРѕР№РґРµРЅРЅРёС… РєСЂРѕРєС–РІ
+	int operator[] (int element) const; //РџРµСЂРµРІР°РЅС‚Р°Р¶РµРЅРЅСЏ РѕРїРµСЂР°С‚РѕСЂСѓ [] РґР»СЏ С–С‚РµСЂСѓРІР°РЅРЅСЏ РµР»РµРјРµРЅС‚Р°РјРё РєР»Р°СЃСѓ
+	void AddStep(int Vertex, double distance); //Р”РѕРґР°РІР°РЅРЅСЏ РєСЂРѕРєСѓ РґРѕ С€Р»СЏС…Сѓ
+	bool Contains(int Location); //РџРµСЂРµРІС–СЂРєР° С‡Рё Р±СѓР»Р° РїСЂРѕР№РґРµРЅР° Р»РѕРєР°С†С–СЏ
 };
-
