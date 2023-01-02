@@ -1,38 +1,38 @@
 #include "Route.h"
 
-//Конструктор класу
+//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
 Route::Route(int Initial)
 {
 	Distance = 0;
 	this->AddStep(Initial, 0);
 }
 
-//Гетер пройденної дистанції
+//Р“РµС‚РµСЂ РїСЂРѕР№РґРµРЅРЅРѕС— РґРёСЃС‚Р°РЅС†С–С—
 double Route::GetDistance() const
 {
 	return Distance;
 }
 
-//Гетер кількості пройденних кроків
+//Р“РµС‚РµСЂ РєС–Р»СЊРєРѕСЃС‚С– РїСЂРѕР№РґРµРЅРЅРёС… РєСЂРѕРєС–РІ
 int Route::GetSteps() const
 {
 	return Path.size();
 }
 
-//Перевантаження оператору [] для ітерування елементами класу
+//РџРµСЂРµРІР°РЅС‚Р°Р¶РµРЅРЅСЏ РѕРїРµСЂР°С‚РѕСЂСѓ [] РґР»СЏ С–С‚РµСЂСѓРІР°РЅРЅСЏ РµР»РµРјРµРЅС‚Р°РјРё РєР»Р°СЃСѓ
 int Route::operator[](int element) const
 {
 	return Path[element];
 }
 
-//Додавання кроку до шляху
+//Р”РѕРґР°РІР°РЅРЅСЏ РєСЂРѕРєСѓ РґРѕ С€Р»СЏС…Сѓ
 void Route::AddStep(int Vertex, double distance)
 {
 	Path.push_back(Vertex);
 	Distance += distance;
 }
 
-//Перевірка чи була пройдена локація
+//РџРµСЂРµРІС–СЂРєР° С‡Рё Р±СѓР»Р° РїСЂРѕР№РґРµРЅР° Р»РѕРєР°С†С–СЏ
 bool Route::Contains(int Location)
 {
 	return find(Path.begin(), Path.end(), Location) != Path.end();
