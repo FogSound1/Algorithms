@@ -1,20 +1,20 @@
 #include "Bee.h"
 
-//Конструктор класу
+//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
 Bee::Bee(int role, MatrixGraph Graph)
 {
 	Role = role;
 	route.RandomRoute(Graph);
 }
 
-//Функція перемішування шляху
+//Р¤СѓРЅРєС†С–СЏ РїРµСЂРµРјС–С€СѓРІР°РЅРЅСЏ С€Р»СЏС…Сѓ
 void Bee::ShuffleBeeRoute(MatrixGraph Graph)
 {
 	route.ShuffleRoute();
 	route.UpdateDistance(Graph);
 }
 
-//Функціонал бджол-працівників
+//Р¤СѓРЅРєС†С–РѕРЅР°Р» Р±РґР¶РѕР»-РїСЂР°С†С–РІРЅРёРєС–РІ
 void Bee::Forage(MatrixGraph Graph, int Limit)
 {
 	Route NewPath = route.MutatePath(Graph);
@@ -22,26 +22,26 @@ void Bee::Forage(MatrixGraph Graph, int Limit)
 	if (NewPath.GetDistance() < route.GetDistance())
 	{
 		route.ChangePath(NewPath.GetPath(), NewPath.GetDistance());
-		Cycle = 0; //Скинути к-ть ітерацій щоб бджола могла далі працювати
+		Cycle = 0; //РЎРєРёРЅСѓС‚Рё Рє-С‚СЊ С–С‚РµСЂР°С†С–Р№ С‰РѕР± Р±РґР¶РѕР»Р° РјРѕРіР»Р° РґР°Р»С– РїСЂР°С†СЋРІР°С‚Рё
 	}
 	else
 	{
 		Cycle += 1;
 	}
 
-	if (Cycle >= Limit) //Якщо бджола не робить прогресу
+	if (Cycle >= Limit) //РЇРєС‰Рѕ Р±РґР¶РѕР»Р° РЅРµ СЂРѕР±РёС‚СЊ РїСЂРѕРіСЂРµСЃСѓ
 	{
 		Role = 3;
 	}
 }
 
-//Функція заміни шляху бджоли
+//Р¤СѓРЅРєС†С–СЏ Р·Р°РјС–РЅРё С€Р»СЏС…Сѓ Р±РґР¶РѕР»Рё
 void Bee::SetRoute(vector<int> OtherRoute, double distance)
 {
 	route.ChangePath(OtherRoute, distance);
 }
 
-//Функціонал бджоли-розвідника
+//Р¤СѓРЅРєС†С–РѕРЅР°Р» Р±РґР¶РѕР»Рё-СЂРѕР·РІС–РґРЅРёРєР°
 void Bee::Scout(MatrixGraph Graph)
 {
 	route.ShuffleRoute();
@@ -50,25 +50,25 @@ void Bee::Scout(MatrixGraph Graph)
 	Cycle = 0;
 }
 
-//Гетер шляху, пройденного мурахою
+//Р“РµС‚РµСЂ С€Р»СЏС…Сѓ, РїСЂРѕР№РґРµРЅРЅРѕРіРѕ РјСѓСЂР°С…РѕСЋ
 Route Bee::GetRoute()
 {
 	return route;
 }
 
-//Сетер ролі
+//РЎРµС‚РµСЂ СЂРѕР»С–
 void Bee::SetRole(int Value)
 {
 	Role = Value;
 }
 
-//Гетер ролі бджоли
+//Р“РµС‚РµСЂ СЂРѕР»С– Р±РґР¶РѕР»Рё
 int Bee::GetRole()
 {
 	return Role;
 }
 
-//Гетер ітерацій
+//Р“РµС‚РµСЂ С–С‚РµСЂР°С†С–Р№
 int Bee::GetCycle()
 {
 	return Cycle;
