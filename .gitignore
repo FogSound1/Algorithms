@@ -1,0 +1,10 @@
+# Executables
+*.exe
+*.out
+*.app
+
+*/.vs/*
+/.vs/*
+/**/x64/*
+*.user
+*.filters
