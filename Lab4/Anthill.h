@@ -6,26 +6,26 @@
 #include "Ant.h"
 using namespace std;
 
-//Клас представлення мурашника
+//РљР»Р°СЃ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ РјСѓСЂР°С€РЅРёРєР°
 class Anthill
 {
 private:
-	const double Alpha = 2; //Довіра феромону
-	const double Beta = 4; //Довіра видимих міст
-	const double Pheromone0 = 1.0; //Початковий феромон
-	const double PheromoneEvaporation = 0.6; //Інтенсивність випаровування
-	const double AntPheromone = 5; //Скільки феромону у мурахи
-	const int Runs = 15; //Обхід графа без покращення результату
+	const double Alpha = 2; //Р”РѕРІС–СЂР° С„РµСЂРѕРјРѕРЅСѓ
+	const double Beta = 4; //Р”РѕРІС–СЂР° РІРёРґРёРјРёС… РјС–СЃС‚
+	const double Pheromone0 = 1.0; //РџРѕС‡Р°С‚РєРѕРІРёР№ С„РµСЂРѕРјРѕРЅ
+	const double PheromoneEvaporation = 0.6; //Р†РЅС‚РµРЅСЃРёРІРЅС–СЃС‚СЊ РІРёРїР°СЂРѕРІСѓРІР°РЅРЅСЏ
+	const double AntPheromone = 5; //РЎРєС–Р»СЊРєРё С„РµСЂРѕРјРѕРЅСѓ Сѓ РјСѓСЂР°С…Рё
+	const int Runs = 15; //РћР±С…С–Рґ РіСЂР°С„Р° Р±РµР· РїРѕРєСЂР°С‰РµРЅРЅСЏ СЂРµР·СѓР»СЊС‚Р°С‚Сѓ
 
-	MatrixGraph Distance; //Граф з вершинами задачі комівояжера
-	MatrixGraph Pheromone; //Граф феромону
+	MatrixGraph Distance; //Р“СЂР°С„ Р· РІРµСЂС€РёРЅР°РјРё Р·Р°РґР°С‡С– РєРѕРјС–РІРѕСЏР¶РµСЂР°
+	MatrixGraph Pheromone; //Р“СЂР°С„ С„РµСЂРѕРјРѕРЅСѓ
 
-	random_device Device; //Прилад для генерації випадкових чисел
-	default_random_engine Engine; //Генератор випадкових чисел
+	random_device Device; //РџСЂРёР»Р°Рґ РґР»СЏ РіРµРЅРµСЂР°С†С–С— РІРёРїР°РґРєРѕРІРёС… С‡РёСЃРµР»
+	default_random_engine Engine; //Р“РµРЅРµСЂР°С‚РѕСЂ РІРёРїР°РґРєРѕРІРёС… С‡РёСЃРµР»
 	
-	vector <unique_ptr<Ant>> Ahill; //Масив мурах
-	void CreateAnts(); //Функція створення мурах
+	vector <unique_ptr<Ant>> Ahill; //РњР°СЃРёРІ РјСѓСЂР°С…
+	void CreateAnts(); //Р¤СѓРЅРєС†С–СЏ СЃС‚РІРѕСЂРµРЅРЅСЏ РјСѓСЂР°С…
 public:
-	Anthill(MatrixGraph Graph); //Конструктор класу
-	void FindRoute(); //Функція пошуку найкращого маршруту для задачі комівояжера
+	Anthill(MatrixGraph Graph); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСѓ
+	void FindRoute(); //Р¤СѓРЅРєС†С–СЏ РїРѕС€СѓРєСѓ РЅР°Р№РєСЂР°С‰РѕРіРѕ РјР°СЂС€СЂСѓС‚Сѓ РґР»СЏ Р·Р°РґР°С‡С– РєРѕРјС–РІРѕСЏР¶РµСЂР°
 };
