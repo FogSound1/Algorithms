@@ -4,6 +4,6 @@
 
 namespace pheromone
 {
-	void Lay(MatrixGraph& Phero, const Route& route, double AntPheromone); //Функція прокладування феромону
-	void Evaporate(MatrixGraph& Phero, double Evaporation); //Функція випаровування феромону
+	void Lay(MatrixGraph& Phero, const Route& route, double AntPheromone); //Р¤СѓРЅРєС†С–СЏ РїСЂРѕРєР»Р°РґСѓРІР°РЅРЅСЏ С„РµСЂРѕРјРѕРЅСѓ
+	void Evaporate(MatrixGraph& Phero, double Evaporation); //Р¤СѓРЅРєС†С–СЏ РІРёРїР°СЂРѕРІСѓРІР°РЅРЅСЏ С„РµСЂРѕРјРѕРЅСѓ
 }
