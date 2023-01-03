@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include "Anthill.h"
 #include "MatrixGraph.h"
@@ -8,12 +8,26 @@ int main()
 	/*Користувач вводить назву файлу, він створюється.
 	Далі генеруються значення елементів матриці випадковим чином*/
 	string FileName;
-	cout << "Enter the name of the file ";
-	getline(cin, FileName);
-
-	ofstream File(FileName);
+	//Валідація
+	bool IsAFile = false;
+	while (!IsAFile)
+	{
+		cout << "Enter the name of the file ";
+		getline(cin, FileName);
+		ofstream Test(FileName);
+		if (Test)
+		{
+			IsAFile = true;
+		}
+		else
+		{
+			cout << endl << "The input is incorrect, try again" << endl;
+		}
+		Test.close();
+	}
 	int size = 250;
 
+	ofstream File(FileName);
 	File << size;
 	File << "\n";
 	random_device Device;
