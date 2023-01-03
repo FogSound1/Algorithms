@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include "MatrixGraph.h"
 #include "Hive.h"
@@ -8,8 +8,23 @@ int main()
 	/*Користувач вводить назву файлу, він створюється
 	Далі генеруються значення елементів матриці випадковим чином*/
 	string FileName;
-	cout << "Enter the name of the file ";
-	getline(cin, FileName);
+	//Валідація
+	bool IsAFile = false;
+	while (!IsAFile)
+	{
+		cout << "Enter the name of the file ";
+		getline(cin, FileName);
+		ofstream Test(FileName);
+		if (Test)
+		{
+			IsAFile = true;
+		}
+		else
+		{
+			cout << endl << "The input is incorrect, try again" << endl;
+		}
+		Test.close();
+	}
 	ofstream File(FileName);
 	int size = 300;
 
